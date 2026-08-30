@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Route 508 Dispatcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#05080c;
@@ -27,9 +24,9 @@ body{
   min-height:100vh;
   background:var(--bg);
   color:var(--text);
-  font-family:"Bebas Neue", Arial, Helvetica, sans-serif;
+  font-family:"Arial Narrow","Arial",Helvetica,sans-serif;
   font-weight:400;
-  letter-spacing:0.03em;
+  letter-spacing:0;
 }
 button,input{font:inherit}
 .page{
@@ -56,10 +53,8 @@ button,input{font:inherit}
   display:flex;
   gap:28px;
   color:#cbd3db;
-  font-size:30px;
 }
 .routeTitle{
-  font-size:63px;
   font-weight:400;
   letter-spacing:.02em;
   margin-bottom:14px;
@@ -79,13 +74,12 @@ button,input{font:inherit}
   border-right:1px solid var(--line);
 }
 .metric:last-child{border-right:0}
-.metric .label{font-size:23px;font-weight:400;white-space:nowrap}
-.metric .num{font-size:40px;font-weight:400;margin-top:6px}
+.metric .label{font-weight:400;white-space:nowrap}
+.metric .num{font-weight:400;margin-top:6px}
 .c-blue{color:#2f7cff}.c-green{color:#42c52c}.c-yellow{color:var(--yellow)}
 .c-red{color:var(--red)}.c-purple{color:var(--purple)}.c-gray{color:#c1c7ce}
 .sectionTitle{
   margin:16px 0 8px;
-  font-size:37px;
   font-weight:400;
 }
 .sectionTitle.blue{color:#2672ff}
@@ -112,7 +106,7 @@ button,input{font:inherit}
 .busNo.blue{background:var(--blue)}
 .busNo.green{background:var(--green)}
 .driver{font-size:18px}
-.status{font-size:23px;text-align:right;font-weight:400}
+.status{text-align:right;font-weight:400}
 .breakBox{
   margin-top:18px;
   border:1px solid #6e5712;
@@ -131,7 +125,6 @@ button,input{font:inherit}
   gap:10px;
   padding:9px 12px;
   border-bottom:1px solid #292411;
-  font-size:23px;
 }
 .searchWrap{padding:0 0 0 0}
 .search{
@@ -140,7 +133,6 @@ button,input{font:inherit}
   border:1px solid #7b8289;
   background:#0b0b0b;
   color:white;
-  font-size:32px;
   text-transform:uppercase;
   outline:none;
 }
@@ -158,7 +150,6 @@ button,input{font:inherit}
   height:150px;
 }
 .directionLabel{
-  font-size:43px;
   font-weight:400;
   margin-bottom:30px;
 }
@@ -181,8 +172,7 @@ button,input{font:inherit}
   border-radius:50%;
   background:#080b10;
   border:4px solid;
-  display:grid;place-items:center;
-  font-size:40px;font-weight:400;
+  display:grid;place-items:center;font-weight:400;
   z-index:2;
 }
 .terminal.left{left:0}
@@ -199,7 +189,6 @@ button,input{font:inherit}
   border-radius:6px;
   text-align:center;
   font-weight:400;
-  font-size:34px;
   z-index:3;
   border:2px solid transparent;
 }
@@ -223,13 +212,12 @@ button,input{font:inherit}
   content:"!";
   position:absolute;
   color:white;
-  font-size:34px;
   font-weight:400;
   left:-4px;
   top:7px;
 }
 .headwayBox{padding:14px 16px}
-.headwayTitle{font-weight:400;font-size:37px;margin-bottom:14px}
+.headwayTitle{font-weight:400;margin-bottom:14px}
 .headwayLine{
   display:flex;
   align-items:center;
@@ -250,13 +238,13 @@ button,input{font:inherit}
 .hwGap.bad{color:var(--red);font-weight:400}
 .timeBox{text-align:center;padding:12px}
 .date{font-size:18px}
-.clock{font-size:61px;font-weight:400;margin-top:3px}
+.clock{font-weight:400;margin-top:3px}
 .shiftBox{text-align:center;padding:14px}
-.shiftName{font-size:43px;font-weight:400;color:#2672ff}
-.shiftTime{font-size:32px;margin:8px 0}
+.shiftName{font-weight:400;color:#2672ff}
+.shiftTime{margin:8px 0}
 .progress{color:#36c525;font-weight:400}
 .alerts{display:flex;flex-direction:column;min-height:0;flex:1}
-.alertsTitle{font-size:40px;font-weight:400;margin-bottom:8px}
+.alertsTitle{font-weight:400;margin-bottom:8px}
 .alertList{overflow-y:auto;overflow-x:hidden;padding-right:5px;scrollbar-width:none}
 .alertList::-webkit-scrollbar{display:none}
 .alertCard{
@@ -271,8 +259,8 @@ button,input{font:inherit}
 .alertCard.yellow{border-color:#d2a400}
 .alertCard.purple{border-color:#8a46c5}
 .alertTop{display:flex;justify-content:space-between;gap:8px;font-weight:400}
-.alertType{margin:10px 0;font-size:30px;font-weight:400}
-.alertMeta{font-size:23px;line-height:1.7;color:#c7cdd3}
+.alertType{margin:10px 0;font-weight:400}
+.alertMeta{line-height:1.7;color:#c7cdd3}
 .systemOk{color:#2ccc28}.gpsOk{color:#45d22f}
 .dim{color:var(--muted)}
 .selected{outline:2px solid white;outline-offset:-2px}
@@ -286,26 +274,26 @@ button,input{font:inherit}
   .left{padding:9px}
   .right{padding:8px;gap:8px;min-width:0}
   .center{padding:8px;gap:8px}
-  .routeTitle{font-size:49px;margin-bottom:9px}
+  .routeTitle{margin-bottom:9px}
   .metrics{margin-bottom:10px}
   .metric{padding:7px 2px}
   .metric .label{font-size:11px}
   .metric .num{font-size:22px}
-  .sectionTitle{font-size:29px;margin:10px 0 6px}
+  .sectionTitle{margin:10px 0 6px}
   .busRow{grid-template-columns:48px minmax(0,1fr) 84px;gap:5px;min-height:36px}
   .busNo{width:40px;padding:6px 0}
-  .driver{font-size:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .status{font-size:17px;white-space:nowrap}
+  .driver{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .status{white-space:nowrap}
   .search{padding:12px 14px;font-size:18px}
   .routeDiagram{min-height:340px;padding:20px 18px}
   .direction{height:125px}
-  .directionLabel{font-size:34px;margin-bottom:20px}
+  .directionLabel{margin-bottom:20px}
   .track{top:76px}
   .terminal{top:56px;width:42px;height:42px;font-size:18px}
   .marker{top:38px;min-width:58px;padding:10px 8px;font-size:20px}
   .marker .accident{bottom:43px}
   .headwayBox{padding:10px}
-  .headwayTitle{font-size:29px;margin-bottom:8px}
+  .headwayTitle{margin-bottom:8px}
   .headwayLine{gap:5px;margin:7px 0;white-space:nowrap}
   .hwBus{min-width:39px;padding:6px 7px}
   .hwGap{min-width:42px;font-size:14px}
@@ -317,9 +305,17 @@ button,input{font:inherit}
   .alertCard{padding:9px}
   .alertType{font-size:18px}
   .alertMeta{font-size:14px}
-  .footer{font-size:21px;gap:16px;padding-top:7px}
+  .footer{gap:16px;padding-top:7px}
 }
-strong,b{font-weight:400}
+
+strong,b{font-weight:400 !important}
+*{
+  font-family:"Arial Narrow","Arial",Helvetica,sans-serif !important;
+  font-size:28px !important;
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+}
+
 </style>
 </head>
 <body>
