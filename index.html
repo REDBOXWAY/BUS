@@ -23,10 +23,6 @@
       color: #ffffff;
     }
 
-    body {
-      background: #000000;
-    }
-
     .screen {
       width: 100vw;
       height: 100vh;
@@ -50,15 +46,12 @@
       background: #000000;
       color: #ffff00;
 
-      border-bottom: 1px solid #ffffff;
-
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     .route-title,
     .shift-info {
-      font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
       font-size: 48px;
       line-height: 1;
       font-weight: 700;
@@ -81,10 +74,6 @@
       min-width: 0;
       min-height: 0;
       background: #000000;
-    }
-
-    .left {
-      border-right: none;
     }
 
     /* LEFT TABLES */
@@ -110,8 +99,6 @@
 
       padding: 0 8px;
 
-      border-right: none;
-
       white-space: nowrap;
 
       font-size: 48px;
@@ -128,14 +115,23 @@
 
     .header-blue {
       background: #55a7d4;
+      color: #000000;
     }
 
     .header-green {
       background: #2aa55f;
+      color: #000000;
     }
 
     .header-yellow {
       background: #f2cf00;
+      color: #000000;
+    }
+
+    .header-blue > div,
+    .header-green > div,
+    .header-yellow > div {
+      color: #000000;
     }
 
     .table-row {
@@ -147,8 +143,6 @@
       background: #000000;
 
       text-transform: uppercase;
-
-      border-bottom: none;
     }
 
     .table-row > div {
@@ -156,8 +150,6 @@
       align-items: center;
 
       padding: 0 8px;
-
-      border-right: none;
 
       white-space: nowrap;
       overflow: hidden;
@@ -205,12 +197,36 @@
       padding: 0 12px;
 
       background: #f2cf00;
-      color: #ffffff;
+      color: #000000;
+    }
 
-      text-transform: uppercase;
+    .search-label {
+      color: #000000;
 
       font-size: 48px;
       font-weight: 400;
+
+      white-space: nowrap;
+    }
+
+    #busSearch {
+      flex: 1;
+      height: 100%;
+
+      margin-left: 18px;
+      padding: 0;
+
+      border: none;
+      outline: none;
+
+      background: transparent;
+      color: #000000;
+
+      font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
+      font-size: 48px;
+      font-weight: 400;
+
+      text-transform: uppercase;
     }
 
     /* STATIONS */
@@ -227,11 +243,6 @@
     .station-panel {
       min-width: 0;
       background: #000000;
-      border-right: none;
-    }
-
-    .station-panel:first-child {
-      border-right: none;
     }
 
     .station-header {
@@ -246,14 +257,17 @@
 
       font-size: 48px;
       font-weight: 400;
+      color: #000000;
     }
 
     .station-header.blue {
       background: #55a7d4;
+      color: #000000;
     }
 
     .station-header.green {
       background: #2aa55f;
+      color: #000000;
     }
 
     .station-grid {
@@ -284,18 +298,9 @@
 
       height: 58px;
 
-      border-right: none;
-
       font-size: 48px;
       font-weight: 400;
-    }
-
-    .station-names {
-      background: #000000;
-    }
-
-    .station-buses {
-      background: #000000;
+      color: #ffffff;
     }
 
     /* ALERTS */
@@ -310,7 +315,7 @@
       padding: 0 12px;
 
       background: #e52f2f;
-      color: #ffffff;
+      color: #000000;
 
       text-transform: uppercase;
 
@@ -326,8 +331,7 @@
       overflow: hidden;
     }
 
-    .alert-row,
-    .empty-alert-row {
+    .alert-row {
       display: grid;
       grid-template-columns: 90px 1fr;
 
@@ -336,24 +340,20 @@
       background: #000000;
 
       text-transform: uppercase;
-
-      border-bottom: none;
     }
 
-    .alert-row > div,
-    .empty-alert-row > div {
+    .alert-row > div {
       display: flex;
       align-items: center;
 
       padding: 0 12px;
-
-      border-right: none;
 
       white-space: nowrap;
       overflow: hidden;
 
       font-size: 48px;
       font-weight: 400;
+      color: #ffffff;
     }
 
     .alert-number {
@@ -368,16 +368,21 @@
 
     <!-- TOP BAR -->
     <div class="topbar">
-      <div class="route-title">ROUTE 508</div>
+
+      <div class="route-title">
+        ROUTE 508
+      </div>
+
       <div class="shift-info">
         18/09/2026 18:35:06 SHIFT A 08:00 - 20:00
       </div>
+
     </div>
 
     <!-- MAIN -->
     <div class="main">
 
-      <!-- LEFT SIDE -->
+      <!-- LEFT -->
       <div class="left">
 
         <!-- BLUE LINE -->
@@ -519,34 +524,26 @@
             <div>15</div>
           </div>
 
-          <div class="table-row">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-
-          <div class="table-row">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-
-          <div class="table-row">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-
         </section>
 
       </div>
 
-      <!-- RIGHT SIDE -->
+      <!-- RIGHT -->
       <div class="right">
 
         <!-- SEARCH -->
         <div class="search-header">
-          SEARCH
+
+          <span class="search-label">
+            SEARCH
+          </span>
+
+          <input
+            type="text"
+            id="busSearch"
+            autocomplete="off"
+          >
+
         </div>
 
         <!-- STATIONS -->
@@ -562,7 +559,7 @@
             <div class="station-grid">
 
               <!-- STATIC STATIONS -->
-              <div class="station-line station-names">
+              <div class="station-line">
                 <div>AB 01</div>
                 <div>AB 02</div>
                 <div>AB 03</div>
@@ -571,7 +568,7 @@
               </div>
 
               <!-- DYNAMIC BUS NUMBERS -->
-              <div class="station-line station-buses">
+              <div class="station-line">
                 <div id="blue-station-1">100</div>
                 <div id="blue-station-2">102</div>
                 <div id="blue-station-3">103</div>
@@ -593,7 +590,7 @@
             <div class="station-grid">
 
               <!-- STATIC STATIONS -->
-              <div class="station-line station-names">
+              <div class="station-line">
                 <div>BA 06</div>
                 <div>BA 07</div>
                 <div>BA 08</div>
@@ -602,7 +599,7 @@
               </div>
 
               <!-- DYNAMIC BUS NUMBERS -->
-              <div class="station-line station-buses">
+              <div class="station-line">
                 <div id="green-station-6">106</div>
                 <div id="green-station-7">107</div>
                 <div id="green-station-8">108</div>
@@ -621,73 +618,18 @@
           ALERTS: 1
         </div>
 
-        <div class="alerts-list">
+        <div class="alerts-list" id="alertsList">
 
           <div class="alert-row">
-            <div class="alert-number">1</div>
+
+            <div class="alert-number">
+              1
+            </div>
+
             <div>
               104_ZAUR ZAUROV_START 17:35_DRT 25 MIN_ACTIVE
             </div>
-          </div>
 
-          <div class="empty-alert-row">
-            <div class="alert-number">2</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">3</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">4</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">5</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">6</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">7</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">8</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">9</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">10</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">11</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">12</div>
-            <div></div>
-          </div>
-
-          <div class="empty-alert-row">
-            <div class="alert-number">13</div>
-            <div></div>
           </div>
 
         </div>
