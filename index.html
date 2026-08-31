@@ -24,7 +24,7 @@
     }
 
     body {
-      font-size: 34px;
+      background: #000000;
     }
 
     .screen {
@@ -47,12 +47,12 @@
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 24px;
+      padding: 0 8px;
 
       background: #000000;
-      color: #ffe600;
+      color: #ffff00;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      border-bottom: 1px solid #ffffff;
 
       text-transform: uppercase;
       white-space: nowrap;
@@ -61,9 +61,9 @@
     .route-title,
     .shift-info {
       font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
-      font-size: 48px;
+      font-size: 60px;
       line-height: 1;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     /* =====================================================
@@ -88,7 +88,7 @@
     }
 
     .left {
-      border-right: 1px solid rgba(255, 255, 255, 0.55);
+      border-right: 1px solid #ffffff;
     }
 
     /* =====================================================
@@ -104,13 +104,11 @@
       display: grid;
       grid-template-columns: 52% 28% 20%;
 
-      height: 48px;
+      height: 58px;
 
       align-items: center;
 
       text-transform: uppercase;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
     }
 
     .section-header > div {
@@ -121,11 +119,12 @@
 
       padding: 0 8px;
 
-      border-right: 1px solid rgba(255, 255, 255, 0.55);
+      border-right: 1px solid #ffffff;
 
       white-space: nowrap;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     .section-header > div:last-child {
@@ -153,13 +152,13 @@
       display: grid;
       grid-template-columns: 52% 28% 20%;
 
-      height: 44px;
+      height: 58px;
 
       background: #000000;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.38);
-
       text-transform: uppercase;
+
+      border-bottom: none;
     }
 
     .table-row > div {
@@ -168,12 +167,13 @@
 
       padding: 0 8px;
 
-      border-right: 1px solid rgba(255, 255, 255, 0.38);
+      border-right: 1px solid #ffffff;
 
       white-space: nowrap;
       overflow: hidden;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     .table-row > div:last-child {
@@ -192,8 +192,8 @@
     }
 
     .bus-number {
-      min-width: 50px;
-      font-size: 34px;
+      min-width: 60px;
+      font-size: 48px;
     }
 
     /* =====================================================
@@ -211,8 +211,8 @@
        ===================================================== */
 
     .search-header {
-      height: 44px;
-      min-height: 44px;
+      height: 58px;
+      min-height: 58px;
 
       display: flex;
       align-items: center;
@@ -220,14 +220,12 @@
       padding: 0 12px;
 
       background: #f2cf00;
-
       color: #ffffff;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
       text-transform: uppercase;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     /* =====================================================
@@ -238,11 +236,9 @@
       display: grid;
       grid-template-columns: 50% 50%;
 
-      height: 132px;
+      height: 174px;
 
       background: #000000;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
     }
 
     .station-panel {
@@ -251,22 +247,21 @@
     }
 
     .station-panel:first-child {
-      border-right: 1px solid rgba(255, 255, 255, 0.55);
+      border-right: 1px solid #ffffff;
     }
 
     .station-header {
-      height: 44px;
+      height: 58px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-
       text-transform: uppercase;
       white-space: nowrap;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     .station-header.blue {
@@ -278,10 +273,10 @@
     }
 
     .station-grid {
-      height: 88px;
+      height: 116px;
 
       display: grid;
-      grid-template-rows: 44px 44px;
+      grid-template-rows: 58px 58px;
 
       background: #000000;
     }
@@ -303,17 +298,16 @@
       align-items: center;
       justify-content: center;
 
-      height: 44px;
+      height: 58px;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
-    /* Static station numbers */
     .station-names {
       background: #000000;
     }
 
-    /* Dynamic bus numbers */
     .station-buses {
       background: #000000;
     }
@@ -323,8 +317,8 @@
        ===================================================== */
 
     .alerts-header {
-      height: 44px;
-      min-height: 44px;
+      height: 58px;
+      min-height: 58px;
 
       display: flex;
       align-items: center;
@@ -332,14 +326,12 @@
       padding: 0 12px;
 
       background: #e52f2f;
-
       color: #ffffff;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
       text-transform: uppercase;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     .alerts-list {
@@ -347,22 +339,21 @@
       min-height: 0;
 
       background: #000000;
-
       overflow: hidden;
     }
 
     .alert-row,
     .empty-alert-row {
       display: grid;
-      grid-template-columns: 74px 1fr;
+      grid-template-columns: 90px 1fr;
 
-      height: 44px;
+      height: 58px;
 
       background: #000000;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.38);
-
       text-transform: uppercase;
+
+      border-bottom: none;
     }
 
     .alert-row > div,
@@ -372,12 +363,13 @@
 
       padding: 0 12px;
 
-      border-right: 1px solid rgba(255, 255, 255, 0.38);
+      border-right: 1px solid #ffffff;
 
       white-space: nowrap;
       overflow: hidden;
 
-      font-size: 34px;
+      font-size: 48px;
+      font-weight: 400;
     }
 
     .alert-row > div:last-child,
@@ -395,10 +387,7 @@
 
   <div class="screen">
 
-    <!-- =====================================================
-         TOP BAR
-         ===================================================== -->
-
+    <!-- TOP BAR -->
     <div class="topbar">
 
       <div class="route-title">
@@ -411,254 +400,149 @@
 
     </div>
 
-    <!-- =====================================================
-         MAIN
-         ===================================================== -->
-
+    <!-- MAIN -->
     <div class="main">
 
-      <!-- ===================================================
-           LEFT SIDE
-           =================================================== -->
-
+      <!-- LEFT SIDE -->
       <div class="left">
 
         <!-- BLUE LINE -->
-
         <section class="table-section">
 
           <div class="section-header header-blue">
-
             <div>BLUE LINE: 5</div>
-
-            <div class="status-title">
-              STATUS
-            </div>
-
-            <div>
-              HEADWAY
-            </div>
-
+            <div class="status-title">STATUS</div>
+            <div>HEADWAY</div>
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">100</span>
               <span>AHMED AHMEDOV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">102</span>
               <span>MAMED MAMEDOV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">103</span>
               <span>AYAZ AYAZOV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">104</span>
               <span>KANAN KANANOV</span>
             </div>
-
-            <div class="status">
-              ACCIDENT
-            </div>
-
+            <div class="status">ACCIDENT</div>
             <div>0</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">105</span>
               <span>ZAUR ZAUROV</span>
             </div>
-
-            <div class="status">
-              BREAK OUT
-            </div>
-
+            <div class="status">BREAK OUT</div>
             <div>0</div>
-
           </div>
 
         </section>
 
         <!-- GREEN LINE -->
-
         <section class="table-section">
 
           <div class="section-header header-green">
-
             <div>GREEN LINE: 5</div>
-
-            <div class="status-title">
-              STATUS
-            </div>
-
-            <div>
-              HEADWAY
-            </div>
-
+            <div class="status-title">STATUS</div>
+            <div>HEADWAY</div>
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">106</span>
               <span>ALEKS ALEKSOV</span>
             </div>
-
-            <div class="status">
-              BREAK OUT
-            </div>
-
+            <div class="status">BREAK OUT</div>
             <div>0</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">107</span>
               <span>PAVEL PAVELOV</span>
             </div>
-
-            <div class="status">
-              GPS OFF
-            </div>
-
+            <div class="status">GPS OFF</div>
             <div>0</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">108</span>
               <span>NIKOLAY NIKOLOV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">109</span>
               <span>MIHAIL MIHAILOV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">110</span>
               <span>IGOR IGOROV</span>
             </div>
-
-            <div class="status">
-              ON ROUTE
-            </div>
-
+            <div class="status">ON ROUTE</div>
             <div>15</div>
-
           </div>
 
         </section>
 
         <!-- BREAK OUT TIME -->
-
         <section class="table-section">
 
           <div class="section-header header-yellow">
-
             <div>BRAKE OUT TIME: 2</div>
-
-            <div class="status-title">
-              STATUS
-            </div>
-
-            <div>
-              PASSED
-            </div>
-
+            <div class="status-title">STATUS</div>
+            <div>PASSED</div>
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">105</span>
               <span>ZAUR ZAUROV</span>
             </div>
-
-            <div class="status">
-              13:00-14:00
-            </div>
-
+            <div class="status">13:00-14:00</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
-
             <div class="driver">
               <span class="bus-number">106</span>
               <span>ALEKS ALEKSOV</span>
             </div>
-
-            <div class="status">
-              13:00-14:00
-            </div>
-
+            <div class="status">13:00-14:00</div>
             <div>15</div>
-
           </div>
 
           <div class="table-row">
@@ -683,24 +567,18 @@
 
       </div>
 
-      <!-- ===================================================
-           RIGHT SIDE
-           =================================================== -->
-
+      <!-- RIGHT SIDE -->
       <div class="right">
 
         <!-- SEARCH -->
-
         <div class="search-header">
           SEARCH
         </div>
 
         <!-- STATIONS -->
-
         <div class="stations">
 
           <!-- BLUE LINE STATIONS -->
-
           <div class="station-panel">
 
             <div class="station-header blue">
@@ -710,7 +588,6 @@
             <div class="station-grid">
 
               <!-- STATIC STATIONS -->
-
               <div class="station-line station-names">
                 <div>AB 01</div>
                 <div>AB 02</div>
@@ -720,7 +597,6 @@
               </div>
 
               <!-- DYNAMIC BUS NUMBERS -->
-
               <div class="station-line station-buses">
                 <div id="blue-station-1">100</div>
                 <div id="blue-station-2">102</div>
@@ -734,7 +610,6 @@
           </div>
 
           <!-- GREEN LINE STATIONS -->
-
           <div class="station-panel">
 
             <div class="station-header green">
@@ -744,7 +619,6 @@
             <div class="station-grid">
 
               <!-- STATIC STATIONS -->
-
               <div class="station-line station-names">
                 <div>BA 06</div>
                 <div>BA 07</div>
@@ -754,7 +628,6 @@
               </div>
 
               <!-- DYNAMIC BUS NUMBERS -->
-
               <div class="station-line station-buses">
                 <div id="green-station-6">106</div>
                 <div id="green-station-7">107</div>
@@ -770,7 +643,6 @@
         </div>
 
         <!-- ALERTS -->
-
         <div class="alerts-header">
           ALERTS: 1
         </div>
@@ -778,15 +650,8 @@
         <div class="alerts-list">
 
           <div class="alert-row">
-
-            <div class="alert-number">
-              1
-            </div>
-
-            <div>
-              104_ZAUR ZAUROV_START 17:35_DRT 25 MIN_ACTIVE
-            </div>
-
+            <div class="alert-number">1</div>
+            <div>104_ZAUR ZAUROV_START 17:35_DRT 25 MIN_ACTIVE</div>
           </div>
 
           <div class="empty-alert-row">
