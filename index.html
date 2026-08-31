@@ -35,9 +35,7 @@
       background: #000000;
     }
 
-    /* =====================================================
-       TOP BAR
-       ===================================================== */
+    /* TOP BAR */
 
     .topbar {
       height: 66px;
@@ -61,14 +59,12 @@
     .route-title,
     .shift-info {
       font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
-      font-size: 60px;
+      font-size: 48px;
       line-height: 1;
-      font-weight: 900;
+      font-weight: 700;
     }
 
-    /* =====================================================
-       MAIN
-       ===================================================== */
+    /* MAIN */
 
     .main {
       flex: 1;
@@ -88,12 +84,10 @@
     }
 
     .left {
-      border-right: 1px solid #ffffff;
+      border-right: none;
     }
 
-    /* =====================================================
-       LEFT TABLES
-       ===================================================== */
+    /* LEFT TABLES */
 
     .table-section {
       width: 100%;
@@ -103,11 +97,8 @@
     .section-header {
       display: grid;
       grid-template-columns: 52% 28% 20%;
-
       height: 58px;
-
       align-items: center;
-
       text-transform: uppercase;
     }
 
@@ -119,7 +110,7 @@
 
       padding: 0 8px;
 
-      border-right: 1px solid #ffffff;
+      border-right: none;
 
       white-space: nowrap;
 
@@ -128,7 +119,6 @@
     }
 
     .section-header > div:last-child {
-      border-right: none;
       justify-content: center;
     }
 
@@ -167,7 +157,7 @@
 
       padding: 0 8px;
 
-      border-right: 1px solid #ffffff;
+      border-right: none;
 
       white-space: nowrap;
       overflow: hidden;
@@ -177,7 +167,6 @@
     }
 
     .table-row > div:last-child {
-      border-right: none;
       justify-content: center;
     }
 
@@ -196,9 +185,7 @@
       font-size: 48px;
     }
 
-    /* =====================================================
-       RIGHT SIDE
-       ===================================================== */
+    /* RIGHT SIDE */
 
     .right {
       display: flex;
@@ -206,9 +193,7 @@
       background: #000000;
     }
 
-    /* =====================================================
-       SEARCH
-       ===================================================== */
+    /* SEARCH */
 
     .search-header {
       height: 58px;
@@ -228,9 +213,7 @@
       font-weight: 400;
     }
 
-    /* =====================================================
-       STATIONS
-       ===================================================== */
+    /* STATIONS */
 
     .stations {
       display: grid;
@@ -244,10 +227,11 @@
     .station-panel {
       min-width: 0;
       background: #000000;
+      border-right: none;
     }
 
     .station-panel:first-child {
-      border-right: 1px solid #ffffff;
+      border-right: none;
     }
 
     .station-header {
@@ -300,6 +284,8 @@
 
       height: 58px;
 
+      border-right: none;
+
       font-size: 48px;
       font-weight: 400;
     }
@@ -312,9 +298,7 @@
       background: #000000;
     }
 
-    /* =====================================================
-       ALERTS
-       ===================================================== */
+    /* ALERTS */
 
     .alerts-header {
       height: 58px;
@@ -363,18 +347,13 @@
 
       padding: 0 12px;
 
-      border-right: 1px solid #ffffff;
+      border-right: none;
 
       white-space: nowrap;
       overflow: hidden;
 
       font-size: 48px;
       font-weight: 400;
-    }
-
-    .alert-row > div:last-child,
-    .empty-alert-row > div:last-child {
-      border-right: none;
     }
 
     .alert-number {
@@ -389,15 +368,10 @@
 
     <!-- TOP BAR -->
     <div class="topbar">
-
-      <div class="route-title">
-        ROUTE 508
-      </div>
-
+      <div class="route-title">ROUTE 508</div>
       <div class="shift-info">
         18/09/2026 18:35:06 SHIFT A 08:00 - 20:00
       </div>
-
     </div>
 
     <!-- MAIN -->
@@ -651,7 +625,9 @@
 
           <div class="alert-row">
             <div class="alert-number">1</div>
-            <div>104_ZAUR ZAUROV_START 17:35_DRT 25 MIN_ACTIVE</div>
+            <div>
+              104_ZAUR ZAUROV_START 17:35_DRT 25 MIN_ACTIVE
+            </div>
           </div>
 
           <div class="empty-alert-row">
