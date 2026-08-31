@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ROUTE 508</title>
 
@@ -10,7 +10,6 @@
     * {
       box-sizing: border-box;
       font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
-      font-size: 34px;
       font-weight: 400;
     }
 
@@ -20,11 +19,12 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      background: #000000;
+      color: #ffffff;
     }
 
     body {
-      background: #12373a;
-      color: #ffffff;
+      font-size: 34px;
     }
 
     .screen {
@@ -32,27 +32,27 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      background: #12373a;
+      background: #000000;
     }
 
-    /* =========================
+    /* =====================================================
        TOP BAR
-       ========================= */
+       ===================================================== */
 
     .topbar {
-      height: 8vh;
-      min-height: 54px;
+      height: 66px;
+      min-height: 66px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 1.2vw;
+      padding: 0 24px;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-
-      background: #12373a;
+      background: #000000;
       color: #ffe600;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
       text-transform: uppercase;
       white-space: nowrap;
@@ -60,14 +60,15 @@
 
     .route-title,
     .shift-info {
-      font-size: 34px;
       font-family: "Arial New Cond", "Arial Narrow", Arial, sans-serif;
+      font-size: 48px;
+      line-height: 1;
       font-weight: 400;
     }
 
-    /* =========================
-       MAIN AREA
-       ========================= */
+    /* =====================================================
+       MAIN
+       ===================================================== */
 
     .main {
       flex: 1;
@@ -75,38 +76,41 @@
 
       display: grid;
       grid-template-columns: 43% 57%;
+
+      background: #000000;
     }
 
     .left,
     .right {
       min-width: 0;
       min-height: 0;
+      background: #000000;
     }
 
     .left {
       border-right: 1px solid rgba(255, 255, 255, 0.55);
     }
 
-    /* =========================
+    /* =====================================================
        LEFT TABLES
-       ========================= */
+       ===================================================== */
 
     .table-section {
       width: 100%;
+      background: #000000;
     }
 
     .section-header {
       display: grid;
       grid-template-columns: 52% 28% 20%;
 
+      height: 44px;
+
       align-items: center;
 
-      height: 5.2vh;
-      min-height: 38px;
+      text-transform: uppercase;
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-
-      text-transform: uppercase;
     }
 
     .section-header > div {
@@ -115,7 +119,7 @@
       display: flex;
       align-items: center;
 
-      padding: 0 0.8vw;
+      padding: 0 8px;
 
       border-right: 1px solid rgba(255, 255, 255, 0.55);
 
@@ -134,24 +138,26 @@
     }
 
     .header-blue {
-      background: #52a7d8;
+      background: #55a7d4;
     }
 
     .header-green {
-      background: #29a55b;
+      background: #2aa55f;
     }
 
     .header-yellow {
-      background: #e4c800;
+      background: #f2cf00;
     }
 
     .table-row {
       display: grid;
       grid-template-columns: 52% 28% 20%;
 
-      min-height: 5.25vh;
+      height: 44px;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+      background: #000000;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.38);
 
       text-transform: uppercase;
     }
@@ -160,9 +166,9 @@
       display: flex;
       align-items: center;
 
-      padding: 0 0.8vw;
+      padding: 0 8px;
 
-      border-right: 1px solid rgba(255, 255, 255, 0.28);
+      border-right: 1px solid rgba(255, 255, 255, 0.38);
 
       white-space: nowrap;
       overflow: hidden;
@@ -182,38 +188,40 @@
     .driver {
       display: flex;
       align-items: center;
-      gap: 0.65vw;
+      gap: 14px;
     }
 
     .bus-number {
-      min-width: 3.6ch;
-
-      color: #ffffff;
-
+      min-width: 50px;
       font-size: 34px;
     }
 
-    /* =========================
+    /* =====================================================
        RIGHT SIDE
-       ========================= */
+       ===================================================== */
 
     .right {
       display: flex;
       flex-direction: column;
+      background: #000000;
     }
 
-    /* SEARCH */
+    /* =====================================================
+       SEARCH
+       ===================================================== */
 
     .search-header {
-      height: 5.2vh;
-      min-height: 38px;
+      height: 44px;
+      min-height: 44px;
 
       display: flex;
       align-items: center;
 
-      padding: 0 0.8vw;
+      padding: 0 12px;
 
-      background: #e4c800;
+      background: #f2cf00;
+
+      color: #ffffff;
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
@@ -222,21 +230,24 @@
       font-size: 34px;
     }
 
-    /* =========================
+    /* =====================================================
        STATIONS
-       ========================= */
+       ===================================================== */
 
     .stations {
       display: grid;
       grid-template-columns: 50% 50%;
 
-      min-height: 15.6vh;
+      height: 132px;
+
+      background: #000000;
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.55);
     }
 
     .station-panel {
       min-width: 0;
+      background: #000000;
     }
 
     .station-panel:first-child {
@@ -244,8 +255,7 @@
     }
 
     .station-header {
-      height: 5.2vh;
-      min-height: 38px;
+      height: 44px;
 
       display: flex;
       align-items: center;
@@ -254,30 +264,26 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
       text-transform: uppercase;
-
       white-space: nowrap;
 
       font-size: 34px;
     }
 
     .station-header.blue {
-      background: #52a7d8;
+      background: #55a7d4;
     }
 
     .station-header.green {
-      background: #29a55b;
+      background: #2aa55f;
     }
 
     .station-grid {
-      height: calc(100% - 5.2vh);
-      min-height: 76px;
+      height: 88px;
 
       display: grid;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: 44px 44px;
 
-      align-items: center;
-
-      padding: 0 1vw;
+      background: #000000;
     }
 
     .station-line {
@@ -286,31 +292,48 @@
 
       align-items: center;
 
+      background: #000000;
+
       text-align: center;
-
       white-space: nowrap;
-
-      font-size: 34px;
     }
 
     .station-line > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 44px;
+
       font-size: 34px;
     }
 
-    /* =========================
+    /* Static station numbers */
+    .station-names {
+      background: #000000;
+    }
+
+    /* Dynamic bus numbers */
+    .station-buses {
+      background: #000000;
+    }
+
+    /* =====================================================
        ALERTS
-       ========================= */
+       ===================================================== */
 
     .alerts-header {
-      height: 5.2vh;
-      min-height: 38px;
+      height: 44px;
+      min-height: 44px;
 
       display: flex;
       align-items: center;
 
-      padding: 0 0.8vw;
+      padding: 0 12px;
 
-      background: #d83535;
+      background: #e52f2f;
+
+      color: #ffffff;
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 
@@ -323,17 +346,21 @@
       flex: 1;
       min-height: 0;
 
+      background: #000000;
+
       overflow: hidden;
     }
 
     .alert-row,
     .empty-alert-row {
       display: grid;
-      grid-template-columns: 7% 93%;
+      grid-template-columns: 74px 1fr;
 
-      min-height: 5.1vh;
+      height: 44px;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+      background: #000000;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.38);
 
       text-transform: uppercase;
     }
@@ -343,9 +370,9 @@
       display: flex;
       align-items: center;
 
-      padding: 0 0.7vw;
+      padding: 0 12px;
 
-      border-right: 1px solid rgba(255, 255, 255, 0.28);
+      border-right: 1px solid rgba(255, 255, 255, 0.38);
 
       white-space: nowrap;
       overflow: hidden;
@@ -368,9 +395,9 @@
 
   <div class="screen">
 
-    <!-- =========================
+    <!-- =====================================================
          TOP BAR
-         ========================= -->
+         ===================================================== -->
 
     <div class="topbar">
 
@@ -384,20 +411,17 @@
 
     </div>
 
-
-    <!-- =========================
+    <!-- =====================================================
          MAIN
-         ========================= -->
+         ===================================================== -->
 
     <div class="main">
 
-
-      <!-- =========================
+      <!-- ===================================================
            LEFT SIDE
-           ========================= -->
+           =================================================== -->
 
       <div class="left">
-
 
         <!-- BLUE LINE -->
 
@@ -405,9 +429,7 @@
 
           <div class="section-header header-blue">
 
-            <div>
-              BLUE LINE: 5
-            </div>
+            <div>BLUE LINE: 5</div>
 
             <div class="status-title">
               STATUS
@@ -418,7 +440,6 @@
             </div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -431,12 +452,9 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -449,12 +467,9 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -467,12 +482,9 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -485,12 +497,9 @@
               ACCIDENT
             </div>
 
-            <div>
-              0
-            </div>
+            <div>0</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -503,26 +512,19 @@
               BREAK OUT
             </div>
 
-            <div>
-              0
-            </div>
+            <div>0</div>
 
           </div>
 
         </section>
 
-
-        <!-- =========================
-             GREEN LINE
-             ========================= -->
+        <!-- GREEN LINE -->
 
         <section class="table-section">
 
           <div class="section-header header-green">
 
-            <div>
-              GREEN LINE: 5
-            </div>
+            <div>GREEN LINE: 5</div>
 
             <div class="status-title">
               STATUS
@@ -533,7 +535,6 @@
             </div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -546,12 +547,9 @@
               BREAK OUT
             </div>
 
-            <div>
-              0
-            </div>
+            <div>0</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -564,12 +562,9 @@
               GPS OFF
             </div>
 
-            <div>
-              0
-            </div>
+            <div>0</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -582,12 +577,9 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -600,12 +592,9 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -618,26 +607,19 @@
               ON ROUTE
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
 
         </section>
 
-
-        <!-- =========================
-             BRAKE OUT TIME
-             ========================= -->
+        <!-- BREAK OUT TIME -->
 
         <section class="table-section">
 
           <div class="section-header header-yellow">
 
-            <div>
-              BRAKE OUT TIME: 2
-            </div>
+            <div>BRAKE OUT TIME: 2</div>
 
             <div class="status-title">
               STATUS
@@ -648,7 +630,6 @@
             </div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -661,12 +642,9 @@
               13:00-14:00
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
 
@@ -679,12 +657,9 @@
               13:00-14:00
             </div>
 
-            <div>
-              15
-            </div>
+            <div>15</div>
 
           </div>
-
 
           <div class="table-row">
             <div></div>
@@ -692,13 +667,11 @@
             <div></div>
           </div>
 
-
           <div class="table-row">
             <div></div>
             <div></div>
             <div></div>
           </div>
-
 
           <div class="table-row">
             <div></div>
@@ -710,13 +683,11 @@
 
       </div>
 
-
-      <!-- =========================
+      <!-- ===================================================
            RIGHT SIDE
-           ========================= -->
+           =================================================== -->
 
       <div class="right">
-
 
         <!-- SEARCH -->
 
@@ -724,13 +695,9 @@
           SEARCH
         </div>
 
-
-        <!-- =========================
-             STATIONS
-             ========================= -->
+        <!-- STATIONS -->
 
         <div class="stations">
-
 
           <!-- BLUE LINE STATIONS -->
 
@@ -742,30 +709,29 @@
 
             <div class="station-grid">
 
-              <div class="station-line">
+              <!-- STATIC STATIONS -->
 
+              <div class="station-line station-names">
                 <div>AB 01</div>
                 <div>AB 02</div>
                 <div>AB 03</div>
                 <div>AB 04</div>
                 <div>AB 05</div>
-
               </div>
 
-              <div class="station-line">
+              <!-- DYNAMIC BUS NUMBERS -->
 
-                <div>100</div>
-                <div>102</div>
-                <div>103</div>
-                <div>104</div>
-                <div>105</div>
-
+              <div class="station-line station-buses">
+                <div id="blue-station-1">100</div>
+                <div id="blue-station-2">102</div>
+                <div id="blue-station-3">103</div>
+                <div id="blue-station-4">104</div>
+                <div id="blue-station-5">105</div>
               </div>
 
             </div>
 
           </div>
-
 
           <!-- GREEN LINE STATIONS -->
 
@@ -777,24 +743,24 @@
 
             <div class="station-grid">
 
-              <div class="station-line">
+              <!-- STATIC STATIONS -->
 
+              <div class="station-line station-names">
                 <div>BA 06</div>
                 <div>BA 07</div>
                 <div>BA 08</div>
                 <div>BA 09</div>
                 <div>BA 10</div>
-
               </div>
 
-              <div class="station-line">
+              <!-- DYNAMIC BUS NUMBERS -->
 
-                <div>106</div>
-                <div>107</div>
-                <div>108</div>
-                <div>109</div>
-                <div>110</div>
-
+              <div class="station-line station-buses">
+                <div id="green-station-6">106</div>
+                <div id="green-station-7">107</div>
+                <div id="green-station-8">108</div>
+                <div id="green-station-9">109</div>
+                <div id="green-station-10">110</div>
               </div>
 
             </div>
@@ -803,18 +769,13 @@
 
         </div>
 
-
-        <!-- =========================
-             ALERTS
-             ========================= -->
+        <!-- ALERTS -->
 
         <div class="alerts-header">
           ALERTS: 1
         </div>
 
-
         <div class="alerts-list">
-
 
           <div class="alert-row">
 
@@ -827,7 +788,6 @@
             </div>
 
           </div>
-
 
           <div class="empty-alert-row">
             <div class="alert-number">2</div>
@@ -888,7 +848,6 @@
             <div class="alert-number">13</div>
             <div></div>
           </div>
-
 
         </div>
 
