@@ -41,7 +41,7 @@
       /* FIXED HEIGHTS: blocks never grow/shrink with item count */
       --line-body-h: calc(var(--row-h) * 5);      /* AB / BA = current 5-row height */
       --break-body-h: calc(var(--row-h) * 2);     /* BREAK OUT = current 2-row height */
-      --alerts-body-h: var(--row-h);               /* ALERTS = current 1-row height */
+      --alerts-body-h: var(--line-body-h);          /* ALERTS = fixed 5-row height, same as AB / BA */
       --stations-body-h: calc(var(--row-h) * 5);  /* STATIONS = current approved height */
 
       --header-font: 28px;
@@ -387,10 +387,20 @@
     ====================================================== */
     .alerts {
       margin-top: 0;
+      height: calc(var(--header-h) + var(--alerts-body-h));
+      min-height: calc(var(--header-h) + var(--alerts-body-h));
+      max-height: calc(var(--header-h) + var(--alerts-body-h));
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .alerts-header {
+      flex: 0 0 var(--header-h);
     }
 
     .alerts-scroll {
+      flex: 0 0 var(--alerts-body-h);
       height: var(--alerts-body-h);
       min-height: var(--alerts-body-h);
       max-height: var(--alerts-body-h);
