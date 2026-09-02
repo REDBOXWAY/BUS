@@ -303,24 +303,32 @@
     .alert-row {
       display: grid;
       grid-template-columns: 55px 1fr;
-      min-height: 46px;
+      align-items: center;
+      height: var(--row-h);
+      min-height: var(--row-h);
+      max-height: var(--row-h);
       border-bottom: 1px solid #333;
       font-size: 28px;
+      line-height: 1;
     }
 
     .alert-index {
+      height: 100%;
       background: #360000;
       color: var(--red);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 28px;
+      line-height: 1;
     }
 
     .alert-text {
-      padding: 10px;
+      height: 100%;
+      padding: 0 10px;
       display: flex;
       align-items: center;
+      line-height: 1;
     }
 
     /* ======================================================
