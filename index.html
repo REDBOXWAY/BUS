@@ -380,7 +380,10 @@
 
     /* ======================================================
        ALERTS
-       Header starts on exact same horizontal line as GREEN LINE.
+       Red block = ONLY critical operational statuses:
+       ACCIDENT and GPS OFF.
+       It is NOT a separate "ALERT ACTIVE" status.
+       Header starts on exact same horizontal line as BA LINE.
     ====================================================== */
     .alerts {
       margin-top: 0;
@@ -398,34 +401,54 @@
     }
 
     .alert-row {
+      position: relative;
       display: grid;
-      grid-template-columns: 55px 1fr;
+      grid-template-columns: 72px 1fr 145px;
       align-items: center;
+
       height: var(--row-h);
       min-height: var(--row-h);
       max-height: var(--row-h);
+
       border-bottom: 1px solid #333;
+      padding: 0 8px;
+
       font-size: 28px;
       line-height: 1;
+      cursor: pointer;
     }
 
-    .alert-index {
-      height: 100%;
-      background: #360000;
+    .alert-row:hover {
+      background: #160000;
+    }
+
+    .alert-bus {
       color: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 28px;
-      line-height: 1;
     }
 
-    .alert-text {
-      height: 100%;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      line-height: 1;
+    .alert-driver {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .alert-status {
+      color: var(--red);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .alert-row.selected {
+      color: var(--yellow);
+      outline: 2px solid var(--yellow);
+      outline-offset: -2px;
+      z-index: 2;
+    }
+
+    .alert-row.selected .alert-bus,
+    .alert-row.selected .alert-status {
+      color: var(--yellow);
     }
 
     /* ======================================================
@@ -538,6 +561,10 @@
       .bus-row,
       .break-row {
         grid-template-columns: 55px 1fr 110px 75px;
+      }
+
+      .alert-row {
+        grid-template-columns: 55px 1fr 110px;
       }
 
       .bus-number {
@@ -768,18 +795,12 @@
         </div>
       </div>
 
-      <!-- ALERTS: SAME Y LEVEL AS GREEN LINE HEADER -->
+      <!-- ALERTS: ONLY CRITICAL STATUSES = ACCIDENT / GPS OFF -->
       <div class="alerts">
-        <div class="alerts-header">ALERTS: 1</div>
+        <div id="alertsHeader" class="alerts-header">ALERTS: 0</div>
 
-        <div class="alerts-scroll">
-
-        <div class="alert-row">
-          <div class="alert-index">1</div>
-          <div class="alert-text">
-            106_ALEKS ALEKSOV_START 17:35_DRT 25 MIN_ACTIVE
-          </div>
-        </div>
+        <div id="alertsScroll" class="alerts-scroll">
+          <!-- Critical buses are rendered automatically by JavaScript -->
         </div>
       </div>
 
@@ -821,7 +842,7 @@
     "103": { driver: "AYAZ AYAZOV", status: "ON ROUTE", headway: "15", station: "AB 03" },
     "104": { driver: "KANAN KANANOV", status: "ACCIDENT", headway: "0", station: "AB 04" },
     "105": { driver: "ZAUR ZAUROV", status: "BREAK OUT", headway: "0", station: "AB 05" },
-    "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", alert: "ALERT ACTIVE", headway: "0", station: "BA 06" },
+    "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", headway: "0", station: "BA 06" },
     "107": { driver: "PAVEL PAVELOV", status: "GPS OFF", headway: "0", station: "BA 07" },
     "108": { driver: "NIKOLAY NIKOLOV", status: "ON ROUTE", headway: "15", station: "BA 08" },
     "109": { driver: "MIHAIL MIHAILOV", status: "ON ROUTE", headway: "15", station: "BA 09" },
@@ -831,7 +852,38 @@
   const searchInput = document.getElementById("searchInput");
 
   function clearSelection() {
-    document.querySelectorAll(".bus-row").forEach(row => {
+    const CRITICAL_STATUSES = new Set(["ACCIDENT", "GPS OFF"]);
+
+  function renderAlerts() {
+    const alertsScroll = document.getElementById("alertsScroll");
+    const alertsHeader = document.getElementById("alertsHeader");
+
+    const criticalBuses = Object.entries(buses).filter(([, bus]) =>
+      CRITICAL_STATUSES.has(bus.status)
+    );
+
+    alertsHeader.textContent = `ALERTS: ${criticalBuses.length}`;
+
+    alertsScroll.innerHTML = criticalBuses.map(([busNumber, bus]) => `
+      <div class="alert-row" data-alert-bus="${busNumber}">
+        <div class="alert-bus">${busNumber}</div>
+        <div class="alert-driver">${bus.driver}</div>
+        <div class="alert-status">${bus.status}</div>
+      </div>
+    `).join("");
+
+    document.querySelectorAll(".alert-row").forEach(row => {
+      row.addEventListener("click", function () {
+        const busNumber = this.dataset.alertBus;
+        searchInput.value = busNumber;
+        selectBus(busNumber);
+      });
+    });
+  }
+
+  renderAlerts();
+
+  document.querySelectorAll(".bus-row").forEach(row => {
       row.classList.remove("selected");
     });
 
@@ -841,6 +893,10 @@
 
     document.querySelectorAll(".station").forEach(station => {
       station.classList.remove("selected");
+    });
+
+    document.querySelectorAll(".alert-row").forEach(row => {
+      row.classList.remove("selected");
     });
   }
 
@@ -877,13 +933,16 @@
       revealInsideScroll(station);
     }
 
+    const alertRow = document.querySelector(`.alert-row[data-alert-bus="${busNumber}"]`);
+    if (alertRow) {
+      alertRow.classList.add("selected");
+      revealInsideScroll(alertRow);
+    }
+
     document.getElementById("infoBusNumber").textContent = busNumber;
     document.getElementById("infoDriver").textContent = bus.driver;
     const statusBox = document.getElementById("infoStatus");
-
-    statusBox.innerHTML = bus.alert
-      ? `${bus.status}<br>${bus.alert}`
-      : bus.status;
+    statusBox.textContent = bus.status;
 
     document.getElementById("infoHeadway").textContent = bus.headway;
     document.getElementById("infoStation").textContent = bus.station;
