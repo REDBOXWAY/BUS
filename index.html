@@ -399,6 +399,21 @@
       flex: 0 0 var(--header-h);
     }
 
+    .alerts-header-grid {
+      grid-template-columns: 72px 1fr 145px 110px 125px;
+      padding: 0 8px;
+    }
+
+    .alerts-header-grid span:first-child {
+      grid-column: 1 / 3;
+    }
+
+    .alerts-header-grid span:nth-child(2),
+    .alerts-header-grid span:nth-child(3),
+    .alerts-header-grid span:nth-child(4) {
+      text-align: center;
+    }
+
     .alerts-scroll {
       flex: 0 0 var(--alerts-body-h);
       height: var(--alerts-body-h);
@@ -413,7 +428,7 @@
     .alert-row {
       position: relative;
       display: grid;
-      grid-template-columns: 72px 1fr 145px;
+      grid-template-columns: 72px 1fr 145px 110px 125px;
       align-items: center;
 
       height: var(--row-h);
@@ -449,6 +464,22 @@
       white-space: nowrap;
     }
 
+    .alert-start {
+      text-align: center;
+      white-space: nowrap;
+      color: #fff;
+    }
+
+    .alert-problem-status {
+      text-align: center;
+      white-space: nowrap;
+      color: var(--red);
+    }
+
+    .alert-problem-status.resolved {
+      color: #00d26a;
+    }
+
     .alert-row.selected {
       color: var(--yellow);
       outline: 2px solid var(--yellow);
@@ -457,7 +488,9 @@
     }
 
     .alert-row.selected .alert-bus,
-    .alert-row.selected .alert-status {
+    .alert-row.selected .alert-status,
+    .alert-row.selected .alert-start,
+    .alert-row.selected .alert-problem-status {
       color: var(--yellow);
     }
 
@@ -573,8 +606,9 @@
         grid-template-columns: 55px 1fr 110px 75px;
       }
 
-      .alert-row {
-        grid-template-columns: 55px 1fr 110px;
+      .alert-row,
+      .alerts-header-grid {
+        grid-template-columns: 55px 1fr 110px 90px 105px;
       }
 
       .bus-number {
@@ -807,7 +841,12 @@
 
       <!-- ALERTS: ONLY CRITICAL STATUSES = ACCIDENT / GPS OFF -->
       <div class="alerts">
-        <div id="alertsHeader" class="alerts-header">ALERTS: 0</div>
+        <div class="alerts-header alerts-header-grid">
+          <span id="alertsHeader">ALERTS: 0</span>
+          <span>PROBLEM</span>
+          <span>START</span>
+          <span>STATUS</span>
+        </div>
 
         <div id="alertsScroll" class="alerts-scroll">
           <!-- Critical buses are rendered automatically by JavaScript -->
@@ -850,10 +889,10 @@
     "100": { driver: "AHMED AHMEDOV", status: "ON ROUTE", headway: "15", station: "AB 01" },
     "102": { driver: "MAMED MAMEDOV", status: "ON ROUTE", headway: "15", station: "AB 02" },
     "103": { driver: "AYAZ AYAZOV", status: "ON ROUTE", headway: "15", station: "AB 03" },
-    "104": { driver: "KANAN KANANOV", status: "ACCIDENT", headway: "0", station: "AB 04" },
+    "104": { driver: "KANAN KANANOV", status: "ACCIDENT", headway: "0", station: "AB 04", problemStart: "--:--", resolution: "ACTIVE" },
     "105": { driver: "ZAUR ZAUROV", status: "BREAK OUT", headway: "0", station: "AB 05" },
     "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", headway: "0", station: "BA 06" },
-    "107": { driver: "PAVEL PAVELOV", status: "GPS OFF", headway: "0", station: "BA 07" },
+    "107": { driver: "PAVEL PAVELOV", status: "GPS OFF", headway: "0", station: "BA 07", problemStart: "--:--", resolution: "ACTIVE" },
     "108": { driver: "NIKOLAY NIKOLOV", status: "ON ROUTE", headway: "15", station: "BA 08" },
     "109": { driver: "MIHAIL MIHAILOV", status: "ON ROUTE", headway: "15", station: "BA 09" },
     "110": { driver: "IGOR IGOROV", status: "ON ROUTE", headway: "15", station: "BA 10" }
@@ -877,6 +916,10 @@
         <div class="alert-bus">${busNumber}</div>
         <div class="alert-driver">${bus.driver}</div>
         <div class="alert-status">${bus.status}</div>
+        <div class="alert-start">${bus.problemStart || "--:--"}</div>
+        <div class="alert-problem-status ${bus.resolution === "RESOLVED" ? "resolved" : ""}">
+          ${bus.resolution || "ACTIVE"}
+        </div>
       </div>
     `).join("");
 
