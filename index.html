@@ -849,10 +849,8 @@
     "110": { driver: "IGOR IGOROV", status: "ON ROUTE", headway: "15", station: "BA 10" }
   };
 
+  const CRITICAL_STATUSES = new Set(["ACCIDENT", "GPS OFF"]);
   const searchInput = document.getElementById("searchInput");
-
-  function clearSelection() {
-    const CRITICAL_STATUSES = new Set(["ACCIDENT", "GPS OFF"]);
 
   function renderAlerts() {
     const alertsScroll = document.getElementById("alertsScroll");
@@ -881,9 +879,8 @@
     });
   }
 
-  renderAlerts();
-
-  document.querySelectorAll(".bus-row").forEach(row => {
+  function clearSelection() {
+    document.querySelectorAll(".bus-row").forEach(row => {
       row.classList.remove("selected");
     });
 
@@ -941,9 +938,7 @@
 
     document.getElementById("infoBusNumber").textContent = busNumber;
     document.getElementById("infoDriver").textContent = bus.driver;
-    const statusBox = document.getElementById("infoStatus");
-    statusBox.textContent = bus.status;
-
+    document.getElementById("infoStatus").textContent = bus.status;
     document.getElementById("infoHeadway").textContent = bus.headway;
     document.getElementById("infoStation").textContent = bus.station;
 
@@ -1000,9 +995,16 @@
     });
   });
 
+  document.querySelectorAll(".break-row").forEach(row => {
+    row.addEventListener("click", function () {
+      const busNumber = this.dataset.breakBus;
+      searchInput.value = busNumber;
+      selectBus(busNumber);
+    });
+  });
+
   function updateClock() {
     const now = new Date();
-
     const date = now.toLocaleDateString("en-GB");
     const time = now.toLocaleTimeString("en-GB", { hour12: false });
 
@@ -1010,6 +1012,7 @@
     document.getElementById("currentTime").textContent = time;
   }
 
+  renderAlerts();
   updateClock();
   setInterval(updateClock, 1000);
 </script>
