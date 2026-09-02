@@ -38,6 +38,12 @@
       --main-gap: 6px;
       --section-gap: 12px;
 
+      /* FIXED HEIGHTS: blocks never grow/shrink with item count */
+      --line-body-h: calc(var(--row-h) * 5);      /* AB / BA = current 5-row height */
+      --break-body-h: calc(var(--row-h) * 2);     /* BREAK OUT = current 2-row height */
+      --alerts-body-h: var(--row-h);               /* ALERTS = current 1-row height */
+      --stations-body-h: calc(var(--row-h) * 5);  /* STATIONS = current approved height */
+
       --header-font: 28px;
       --body-font: 28px;
     }
@@ -167,6 +173,51 @@
     ====================================================== */
     .bus-table {
       margin-bottom: var(--section-gap);
+      overflow: hidden;
+    }
+
+    /* AB / BA body: fixed outside height, internal scroll only */
+    .bus-scroll {
+      height: var(--line-body-h);
+      min-height: var(--line-body-h);
+      max-height: var(--line-body-h);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #000;
+    }
+
+    /* BREAK OUT body: fixed outside height, internal scroll only */
+    .break-scroll {
+      height: var(--break-body-h);
+      min-height: var(--break-body-h);
+      max-height: var(--break-body-h);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #000;
+    }
+
+    .bus-scroll::-webkit-scrollbar,
+    .break-scroll::-webkit-scrollbar,
+    .alerts-scroll::-webkit-scrollbar,
+    .stations-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .bus-scroll::-webkit-scrollbar-track,
+    .break-scroll::-webkit-scrollbar-track,
+    .alerts-scroll::-webkit-scrollbar-track,
+    .stations-scroll::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    .bus-scroll::-webkit-scrollbar-thumb,
+    .break-scroll::-webkit-scrollbar-thumb,
+    .alerts-scroll::-webkit-scrollbar-thumb,
+    .stations-scroll::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 5px;
     }
 
     .bus-row,
@@ -211,6 +262,7 @@
 
     .break-table {
       margin-top: 0;
+      overflow: hidden;
     }
 
     .bus-row.selected,
@@ -236,14 +288,24 @@
       padding-left: 10px;
     }
 
-    .stations-grid {
-      height: calc(var(--row-h) * 5);
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: 1fr 1fr;
+    .stations-scroll {
+      height: var(--stations-body-h);
+      min-height: var(--stations-body-h);
+      max-height: var(--stations-body-h);
+      overflow-y: auto;
+      overflow-x: hidden;
       border-left: 1px solid #333;
       border-right: 1px solid #333;
       border-bottom: 1px solid #333;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #000;
+    }
+
+    .stations-grid {
+      min-height: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: calc(var(--stations-body-h) / 2);
     }
 
     .station {
@@ -264,6 +326,11 @@
 
     .station:nth-child(n+6) {
       border-bottom: 0;
+    }
+
+    /* If more than 10 stations are added, keep grid separators for scroll rows */
+    .station:nth-child(n+11) {
+      border-top: 1px solid #333;
     }
 
     .station-code {
@@ -298,6 +365,17 @@
     ====================================================== */
     .alerts {
       margin-top: 0;
+      overflow: hidden;
+    }
+
+    .alerts-scroll {
+      height: var(--alerts-body-h);
+      min-height: var(--alerts-body-h);
+      max-height: var(--alerts-body-h);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #000;
     }
 
     .alert-row {
@@ -495,6 +573,8 @@
           <span>HEADWAY</span>
         </div>
 
+        <div class="bus-scroll">
+
         <div class="bus-row" data-bus="100">
           <div class="bus-number">100</div>
           <div class="driver">AHMED AHMEDOV</div>
@@ -529,6 +609,7 @@
           <div class="status">BREAK OUT</div>
           <div class="headway">0</div>
         </div>
+        </div>
       </div>
 
       <!-- GREEN LINE -->
@@ -538,6 +619,8 @@
           <span>STATUS</span>
           <span>HEADWAY</span>
         </div>
+
+        <div class="bus-scroll">
 
         <div class="bus-row" data-bus="106">
           <div class="bus-number">106</div>
@@ -573,6 +656,7 @@
           <div class="status">ON ROUTE</div>
           <div class="headway">15</div>
         </div>
+        </div>
       </div>
 
       <!-- BREAK OUT -->
@@ -582,6 +666,8 @@
           <span>STATUS</span>
           <span>PASSED</span>
         </div>
+
+        <div class="break-scroll">
 
         <div class="break-row" data-break-bus="105">
           <div class="bus-number">105</div>
@@ -596,6 +682,7 @@
           <div class="break-time">13:00-14:00</div>
           <div class="passed">15</div>
         </div>
+        </div>
       </div>
 
     </div>
@@ -607,7 +694,8 @@
       <div class="stations-panel">
         <div class="station-title">STATIONS</div>
 
-        <div class="stations-grid">
+        <div class="stations-scroll">
+          <div class="stations-grid">
           <div class="station" data-station-bus="100">
             <div class="station-code">AB 01</div>
             <div class="station-bus">100</div>
@@ -657,6 +745,7 @@
             <div class="station-code">BA 10</div>
             <div class="station-bus">110</div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -664,11 +753,14 @@
       <div class="alerts">
         <div class="alerts-header">ALERTS: 1</div>
 
+        <div class="alerts-scroll">
+
         <div class="alert-row">
           <div class="alert-index">1</div>
           <div class="alert-text">
             106_ALEKS ALEKSOV_START 17:35_DRT 25 MIN_ACTIVE
           </div>
+        </div>
         </div>
       </div>
 
@@ -733,6 +825,15 @@
     });
   }
 
+  function revealInsideScroll(element) {
+    if (!element) return;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest"
+    });
+  }
+
   function selectBus(busNumber) {
     const bus = buses[busNumber];
     if (!bus) return;
@@ -740,13 +841,22 @@
     clearSelection();
 
     const row = document.querySelector(`.bus-row[data-bus="${busNumber}"]`);
-    if (row) row.classList.add("selected");
+    if (row) {
+      row.classList.add("selected");
+      revealInsideScroll(row);
+    }
 
     const breakRow = document.querySelector(`.break-row[data-break-bus="${busNumber}"]`);
-    if (breakRow) breakRow.classList.add("selected");
+    if (breakRow) {
+      breakRow.classList.add("selected");
+      revealInsideScroll(breakRow);
+    }
 
     const station = document.querySelector(`.station[data-station-bus="${busNumber}"]`);
-    if (station) station.classList.add("selected");
+    if (station) {
+      station.classList.add("selected");
+      revealInsideScroll(station);
+    }
 
     document.getElementById("infoBusNumber").textContent = busNumber;
     document.getElementById("infoDriver").textContent = bus.driver;
