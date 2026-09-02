@@ -292,20 +292,37 @@
       height: var(--stations-body-h);
       min-height: var(--stations-body-h);
       max-height: var(--stations-body-h);
-      overflow-y: auto;
-      overflow-x: hidden;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
       border-left: 1px solid #333;
       border-right: 1px solid #333;
       border-bottom: 1px solid #333;
+
       scrollbar-width: thin;
       scrollbar-color: #444 #000;
     }
 
+    /*
+      STATIONS LOGIC:
+      - always 2 rows;
+      - every 2 stations create 1 new column;
+      - first 5 columns fill the visible width;
+      - 6th, 7th, 8th... columns continue to the right;
+      - outer block height never changes.
+    */
     .stations-grid {
+      height: 100%;
       min-height: 100%;
+
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-auto-rows: calc(var(--stations-body-h) / 2);
+      grid-template-rows: repeat(2, 1fr);
+      grid-auto-flow: column;
+      grid-auto-columns: 20%;
+
+      width: max-content;
+      min-width: 100%;
     }
 
     .station {
@@ -320,17 +337,19 @@
       cursor: pointer;
     }
 
-    .station:nth-child(5n) {
-      border-right: 0;
+    /*
+      With grid-auto-flow: column:
+      station 1-2 = column 1
+      station 3-4 = column 2
+      station 5-6 = column 3, etc.
+    */
+    .station {
+      border-right: 1px solid #333;
+      border-bottom: 1px solid #333;
     }
 
-    .station:nth-child(n+6) {
+    .station:nth-child(even) {
       border-bottom: 0;
-    }
-
-    /* If more than 10 stations are added, keep grid separators for scroll rows */
-    .station:nth-child(n+11) {
-      border-top: 1px solid #333;
     }
 
     .station-code {
