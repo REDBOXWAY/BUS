@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>ROUTE 508</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
+    * { box-sizing: border-box; }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
+    html, body {
       margin: 0;
       width: 100%;
       min-height: 100%;
@@ -29,61 +23,96 @@
     }
 
     body {
-      padding: 14px;
+      padding: 6px;
       overflow-x: hidden;
     }
 
     :root {
-      --black: #000000;
-      --white: #ffffff;
-
-      /* ЕДИНЫЙ ЦВЕТ ВСЕХ ЗАГОЛОВКОВ */
-      --header-green: #0B6B3A;
-
+      --green: #0B6B3A;
       --yellow: #ffd400;
-      --red: #d71920;
+      --red: #df1822;
+      --line: #202020;
 
-      --border: #333333;
-      --gray: #a5a5a5;
+      --header-h: 40px;
+      --row-h: 43px;
+      --main-gap: 6px;
+      --section-gap: 12px;
+
+      --header-font: 27px;
+      --body-font: 23px;
     }
 
     .dashboard {
       width: 100%;
-      min-height: calc(100vh - 28px);
+      min-height: calc(100vh - 12px);
     }
 
-
-    /* =========================
+    /* ======================================================
        TOP BAR
-    ========================== */
-
+       ROUTE | SEARCH | DATE + SHIFT
+    ====================================================== */
     .topbar {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 20% 46% 34%;
+      gap: var(--main-gap);
       align-items: center;
-      color: var(--yellow);
-      font-size: 28px;
       margin-bottom: 12px;
-      letter-spacing: 0.5px;
+      min-height: 50px;
     }
 
     .route-name {
+      color: var(--yellow);
       font-size: 34px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .search-header {
+      height: 44px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      align-items: center;
+      background: var(--green);
+      color: #000;
+    }
+
+    .search-label {
+      padding-left: 10px;
+      font-size: var(--header-font);
+      line-height: 1;
+    }
+
+    #searchInput {
+      width: 100%;
+      height: 44px;
+      border: 0;
+      outline: 0;
+      background: var(--green);
+      color: #000;
+      font-family: "Bebas Neue", Arial, sans-serif;
+      font-size: var(--header-font);
+      font-weight: 400;
+      padding: 0 10px;
+      text-transform: uppercase;
     }
 
     .time-shift {
+      color: var(--yellow);
+      font-size: 28px;
+      line-height: 1;
       text-align: right;
+      white-space: nowrap;
     }
 
-
-    /* =========================
-       MAIN GRID
-    ========================== */
-
+    /* ======================================================
+       TWO-COLUMN GRID
+       The right and left headers share the same Y levels.
+    ====================================================== */
     .main-grid {
       display: grid;
-      grid-template-columns: 49% 51%;
-      gap: 12px;
+      grid-template-columns: calc(49% - 3px) calc(51% - 3px);
+      gap: var(--main-gap);
+      align-items: start;
     }
 
     .left-panel,
@@ -91,58 +120,68 @@
       min-width: 0;
     }
 
-
-    /* =========================
-       UNIVERSAL SECTION HEADER
-    ========================== */
-
-    .section-header {
-      height: 40px;
-      background: var(--header-green);
-      color: #000;
-
+    /* ======================================================
+       UNIVERSAL HEADER
+       SAME HEIGHT + SAME FONT SIZE
+    ====================================================== */
+    .section-header,
+    .station-title,
+    .alerts-header {
+      height: var(--header-h);
+      min-height: var(--header-h);
+      max-height: var(--header-h);
       display: grid;
       align-items: center;
-
       padding: 0 10px;
-
-      font-size: 27px;
+      font-size: var(--header-font);
       line-height: 1;
+      color: #000;
     }
 
-    .table-header {
+    .section-header,
+    .station-title {
+      background: var(--green);
+    }
+
+    .alerts-header {
+      background: var(--red);
+    }
+
+    .table-header,
+    .break-header {
       grid-template-columns: 1fr 145px 105px;
     }
 
     .table-header span:nth-child(2),
-    .table-header span:nth-child(3) {
+    .table-header span:nth-child(3),
+    .break-header span:nth-child(2),
+    .break-header span:nth-child(3) {
       text-align: center;
     }
 
-
-    /* =========================
-       BUS TABLE
-    ========================== */
-
+    /* ======================================================
+       LEFT TABLES
+    ====================================================== */
     .bus-table {
-      margin-bottom: 12px;
+      margin-bottom: var(--section-gap);
     }
 
-    .bus-row {
+    .bus-row,
+    .break-row {
       position: relative;
-
       display: grid;
       grid-template-columns: 72px 1fr 145px 105px;
       align-items: center;
-
-      min-height: 43px;
-
-      border-bottom: 1px solid #202020;
-
+      height: var(--row-h);
+      min-height: var(--row-h);
+      max-height: var(--row-h);
+      border-bottom: 1px solid var(--line);
       padding: 0 8px;
+      font-size: var(--body-font);
+      line-height: 1;
+    }
 
-      font-size: 23px;
-
+    .bus-row {
       cursor: pointer;
     }
 
@@ -161,211 +200,136 @@
     }
 
     .status,
-    .headway {
+    .headway,
+    .break-time,
+    .passed {
       text-align: center;
     }
 
+    .break-table {
+      margin-top: 0;
+    }
 
-    /* =========================
-       SELECTED BUS
-    ========================== */
-
-    .bus-row.selected {
+    .bus-row.selected,
+    .break-row.selected {
       color: var(--yellow);
       outline: 2px solid var(--yellow);
       outline-offset: -2px;
       z-index: 2;
     }
 
-
-    /* =========================
-       BREAK OUT
-    ========================== */
-
-    .break-table {
-      margin-top: 4px;
-    }
-
-    .break-header {
-      grid-template-columns: 1fr 145px 105px;
-    }
-
-    .break-header span:nth-child(2),
-    .break-header span:nth-child(3) {
-      text-align: center;
-    }
-
-    .break-row {
-      display: grid;
-      grid-template-columns: 72px 1fr 145px 105px;
-      align-items: center;
-
-      min-height: 43px;
-
-      padding: 0 8px;
-
-      border-bottom: 1px solid #202020;
-
-      font-size: 23px;
-    }
-
-    .break-row.selected {
-      color: var(--yellow);
-      outline: 2px solid var(--yellow);
-      outline-offset: -2px;
-    }
-
-    .break-time,
-    .passed {
-      text-align: center;
-    }
-
-
-    /* =========================
-       SEARCH
-    ========================== */
-
-    .search-box {
-      margin-bottom: 12px;
-    }
-
-    .search-header {
-      display: grid;
-      grid-template-columns: 135px 1fr;
-
-      background: var(--header-green);
-
-      height: 50px;
-      align-items: center;
-
-      color: #000;
-    }
-
-    .search-label {
-      padding-left: 12px;
-      font-size: 28px;
-    }
-
-    #searchInput {
-      width: 100%;
-      height: 50px;
-
-      border: 0;
-      outline: 0;
-
-      background: var(--header-green);
-      color: #000;
-
-      font-family: "Bebas Neue", Arial, sans-serif;
-      font-size: 32px;
-      font-weight: 400;
-
-      padding: 0 12px;
-
-      text-transform: uppercase;
-    }
-
-    #searchInput::placeholder {
-      color: rgba(0, 0, 0, .55);
-    }
-
-
-    /* =========================
-       STATIONS
-    ========================== */
-
+    /* ======================================================
+       RIGHT: ONE STATIONS BLOCK ONLY
+       STATIONS HEADER aligns with BLUE LINE HEADER.
+       Its body is exactly 5 left-table rows high.
+       Therefore ALERTS aligns with GREEN LINE HEADER.
+    ====================================================== */
     .stations-panel {
-      margin-bottom: 12px;
+      margin-bottom: var(--section-gap);
     }
 
     .station-title {
-      background: var(--header-green);
-      color: #000;
-
-      padding: 7px 10px;
-
-      font-size: 27px;
+      text-align: center;
     }
 
     .stations-grid {
+      height: calc(var(--row-h) * 5);
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-
+      grid-template-rows: 1fr 1fr;
       border-left: 1px solid #333;
       border-right: 1px solid #333;
       border-bottom: 1px solid #333;
     }
 
     .station {
-      min-height: 72px;
-
+      min-width: 0;
       border-right: 1px solid #333;
-
+      border-bottom: 1px solid #333;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
       position: relative;
+      cursor: pointer;
     }
 
-    .station:last-child {
+    .station:nth-child(5n) {
       border-right: 0;
+    }
+
+    .station:nth-child(n+6) {
+      border-bottom: 0;
     }
 
     .station-code {
       color: #aaa;
       font-size: 20px;
-      margin-bottom: 5px;
+      line-height: 1;
+      margin-bottom: 10px;
     }
 
     .station-bus {
       font-size: 28px;
+      line-height: 1;
       min-width: 58px;
       text-align: center;
       padding: 3px 6px;
     }
 
+    .station.selected {
+      outline: 2px solid var(--yellow);
+      outline-offset: -2px;
+      z-index: 3;
+    }
+
+    .station.selected .station-code,
     .station.selected .station-bus {
       color: var(--yellow);
-      outline: 2px solid var(--yellow);
     }
 
-    .station.selected::after {
-      content: "";
-
-      position: absolute;
-
-      bottom: -11px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      width: 0;
-      height: 0;
-
-      border-left: 9px solid transparent;
-      border-right: 9px solid transparent;
-      border-bottom: 11px solid var(--yellow);
+    /* ======================================================
+       ALERTS
+       Header starts on exact same horizontal line as GREEN LINE.
+    ====================================================== */
+    .alerts {
+      margin-top: 0;
     }
 
+    .alert-row {
+      display: grid;
+      grid-template-columns: 55px 1fr;
+      min-height: 46px;
+      border-bottom: 1px solid #333;
+      font-size: 21px;
+    }
 
-    /* =========================
+    .alert-index {
+      background: #360000;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+    }
+
+    .alert-text {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ======================================================
        SELECTED BUS INFORMATION
-    ========================== */
-
+       Kept functional, but placed below ALERTS so it does not
+       disturb the STATIONS / ALERTS alignment.
+    ====================================================== */
     .bus-info {
       display: none;
-
       border: 2px solid var(--yellow);
-
-      margin-top: 20px;
-      margin-bottom: 14px;
-
+      margin-top: 14px;
       padding: 13px;
-
       position: relative;
-
       background: #000;
     }
 
@@ -375,25 +339,18 @@
 
     .info-close {
       position: absolute;
-
       top: 5px;
       right: 10px;
-
       color: var(--yellow);
-
       font-size: 29px;
-
       cursor: pointer;
     }
 
     .info-top {
       display: grid;
       grid-template-columns: 100px 1fr;
-
       align-items: center;
-
       padding-bottom: 10px;
-
       border-bottom: 1px solid #555;
     }
 
@@ -410,7 +367,6 @@
     .info-bottom {
       display: grid;
       grid-template-columns: 1fr 1fr 1.4fr;
-
       margin-top: 12px;
     }
 
@@ -438,87 +394,26 @@
       font-size: 29px;
     }
 
-
-    /* =========================
-       ALERTS
-       ОСТАЁТСЯ КРАСНЫМ
-    ========================== */
-
-    .alerts {
-      margin-top: 10px;
-    }
-
-    .alerts-header {
-      height: 40px;
-
-      display: flex;
-      align-items: center;
-
-      background: var(--red);
-      color: #000;
-
-      padding: 0 10px;
-
-      font-size: 27px;
-    }
-
-    .alert-row {
-      display: grid;
-      grid-template-columns: 55px 1fr;
-
-      min-height: 46px;
-
-      border-bottom: 1px solid #333;
-
-      font-size: 21px;
-    }
-
-    .alert-index {
-      background: #360000;
-      color: var(--red);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 27px;
-    }
-
-    .alert-text {
-      padding: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
-
     @media (max-width: 1200px) {
+      :root {
+        --header-font: 21px;
+        --body-font: 18px;
+      }
 
       body {
-        padding: 7px;
+        padding: 5px;
       }
 
-      .main-grid {
-        gap: 7px;
+      .route-name {
+        font-size: 27px;
       }
 
-      .section-header,
-      .station-title,
-      .alerts-header {
-        font-size: 21px;
+      .time-shift {
+        font-size: 22px;
       }
 
-      .bus-row,
-      .break-row {
-        grid-template-columns: 55px 1fr 110px 75px;
-        font-size: 18px;
-      }
-
-      .bus-number {
-        font-size: 20px;
+      .topbar {
+        grid-template-columns: 20% 46% 34%;
       }
 
       .table-header,
@@ -526,16 +421,13 @@
         grid-template-columns: 1fr 110px 75px;
       }
 
-      .search-header {
-        grid-template-columns: 100px 1fr;
+      .bus-row,
+      .break-row {
+        grid-template-columns: 55px 1fr 110px 75px;
       }
 
-      .search-label {
-        font-size: 22px;
-      }
-
-      #searchInput {
-        font-size: 25px;
+      .bus-number {
+        font-size: 20px;
       }
 
       .station-code {
@@ -545,23 +437,24 @@
       .station-bus {
         font-size: 22px;
       }
-    }
 
+      .search-header {
+        grid-template-columns: 90px 1fr;
+      }
+    }
   </style>
 </head>
 
-
 <body>
-
 <div class="dashboard">
 
-
-  <!-- TOP -->
-
+  <!-- TOP: SEARCH IS AT THE TOP -->
   <div class="topbar">
+    <div class="route-name">ROUTE 508</div>
 
-    <div class="route-name">
-      ROUTE 508
+    <div class="search-header">
+      <div class="search-label">SEARCH</div>
+      <input id="searchInput" type="text" autocomplete="off" placeholder="">
     </div>
 
     <div class="time-shift">
@@ -570,951 +463,345 @@
       &nbsp;&nbsp;
       SHIFT A 08:00 - 20:00
     </div>
-
   </div>
-
 
   <div class="main-grid">
 
-
-    <!-- =========================
-         LEFT
-    ========================== -->
-
+    <!-- ================= LEFT ================= -->
     <div class="left-panel">
 
-
       <!-- BLUE LINE -->
-
       <div class="bus-table">
-
         <div class="section-header table-header">
-
           <span>BLUE LINE: 5</span>
-
           <span>STATUS</span>
-
           <span>HEADWAY</span>
-
         </div>
-
 
         <div class="bus-row" data-bus="100">
-
           <div class="bus-number">100</div>
-
-          <div class="driver">
-            AHMED AHMEDOV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">AHMED AHMEDOV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
 
         <div class="bus-row" data-bus="102">
-
           <div class="bus-number">102</div>
-
-          <div class="driver">
-            MAMED MAMEDOV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">MAMED MAMEDOV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
 
         <div class="bus-row" data-bus="103">
-
           <div class="bus-number">103</div>
-
-          <div class="driver">
-            AYAZ AYAZOV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">AYAZ AYAZOV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
 
         <div class="bus-row" data-bus="104">
-
           <div class="bus-number">104</div>
-
-          <div class="driver">
-            KANAN KANANOV
-          </div>
-
-          <div class="status">
-            ACCIDENT
-          </div>
-
-          <div class="headway">
-            0
-          </div>
-
+          <div class="driver">KANAN KANANOV</div>
+          <div class="status">ACCIDENT</div>
+          <div class="headway">0</div>
         </div>
-
 
         <div class="bus-row" data-bus="105">
-
           <div class="bus-number">105</div>
-
-          <div class="driver">
-            ZAUR ZAUROV
-          </div>
-
-          <div class="status">
-            BREAK OUT
-          </div>
-
-          <div class="headway">
-            0
-          </div>
-
+          <div class="driver">ZAUR ZAUROV</div>
+          <div class="status">BREAK OUT</div>
+          <div class="headway">0</div>
         </div>
-
       </div>
-
-
 
       <!-- GREEN LINE -->
-
       <div class="bus-table">
-
         <div class="section-header table-header">
-
           <span>GREEN LINE: 5</span>
-
           <span>STATUS</span>
-
           <span>HEADWAY</span>
-
         </div>
-
 
         <div class="bus-row" data-bus="106">
-
           <div class="bus-number">106</div>
-
-          <div class="driver">
-            ALEKS ALEKSOV
-          </div>
-
-          <div class="status">
-            BREAK OUT
-          </div>
-
-          <div class="headway">
-            0
-          </div>
-
+          <div class="driver">ALEKS ALEKSOV</div>
+          <div class="status">BREAK OUT</div>
+          <div class="headway">0</div>
         </div>
-
 
         <div class="bus-row" data-bus="107">
-
           <div class="bus-number">107</div>
-
-          <div class="driver">
-            PAVEL PAVELOV
-          </div>
-
-          <div class="status">
-            GPS OFF
-          </div>
-
-          <div class="headway">
-            0
-          </div>
-
+          <div class="driver">PAVEL PAVELOV</div>
+          <div class="status">GPS OFF</div>
+          <div class="headway">0</div>
         </div>
-
 
         <div class="bus-row" data-bus="108">
-
           <div class="bus-number">108</div>
-
-          <div class="driver">
-            NIKOLAY NIKOLOV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">NIKOLAY NIKOLOV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
 
         <div class="bus-row" data-bus="109">
-
           <div class="bus-number">109</div>
-
-          <div class="driver">
-            MIHAIL MIHAILOV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">MIHAIL MIHAILOV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
 
         <div class="bus-row" data-bus="110">
-
           <div class="bus-number">110</div>
-
-          <div class="driver">
-            IGOR IGOROV
-          </div>
-
-          <div class="status">
-            ON ROUTE
-          </div>
-
-          <div class="headway">
-            15
-          </div>
-
+          <div class="driver">IGOR IGOROV</div>
+          <div class="status">ON ROUTE</div>
+          <div class="headway">15</div>
         </div>
-
       </div>
 
-
-
       <!-- BREAK OUT -->
-
       <div class="break-table">
-
         <div class="section-header break-header">
-
           <span>BREAK OUT TIME: 2</span>
-
           <span>STATUS</span>
-
           <span>PASSED</span>
-
         </div>
-
 
         <div class="break-row" data-break-bus="105">
-
-          <div class="bus-number">
-            105
-          </div>
-
-          <div>
-            ZAUR ZAUROV
-          </div>
-
-          <div class="break-time">
-            13:00-14:00
-          </div>
-
-          <div class="passed">
-            15
-          </div>
-
+          <div class="bus-number">105</div>
+          <div>ZAUR ZAUROV</div>
+          <div class="break-time">13:00-14:00</div>
+          <div class="passed">15</div>
         </div>
-
 
         <div class="break-row" data-break-bus="106">
-
-          <div class="bus-number">
-            106
-          </div>
-
-          <div>
-            ALEKS ALEKSOV
-          </div>
-
-          <div class="break-time">
-            13:00-14:00
-          </div>
-
-          <div class="passed">
-            15
-          </div>
-
+          <div class="bus-number">106</div>
+          <div>ALEKS ALEKSOV</div>
+          <div class="break-time">13:00-14:00</div>
+          <div class="passed">15</div>
         </div>
-
       </div>
 
     </div>
 
-
-
-    <!-- =========================
-         RIGHT
-    ========================== -->
-
+    <!-- ================= RIGHT ================= -->
     <div class="right-panel">
 
-
-      <!-- SEARCH -->
-
-      <div class="search-box">
-
-        <div class="search-header">
-
-          <div class="search-label">
-            SEARCH
-          </div>
-
-          <input
-            id="searchInput"
-            type="text"
-            autocomplete="off"
-            placeholder=""
-          >
-
-        </div>
-
-      </div>
-
-
-
-      <!-- BLUE STATIONS -->
-
+      <!-- ONE COMMON STATIONS BLOCK -->
       <div class="stations-panel">
-
-        <div class="station-title">
-          BLUE LINE STATIONS
-        </div>
+        <div class="station-title">STATIONS</div>
 
         <div class="stations-grid">
-
           <div class="station" data-station-bus="100">
-
-            <div class="station-code">
-              AB 01
-            </div>
-
-            <div class="station-bus">
-              100
-            </div>
-
+            <div class="station-code">AB 01</div>
+            <div class="station-bus">100</div>
           </div>
-
 
           <div class="station" data-station-bus="102">
-
-            <div class="station-code">
-              AB 02
-            </div>
-
-            <div class="station-bus">
-              102
-            </div>
-
+            <div class="station-code">AB 02</div>
+            <div class="station-bus">102</div>
           </div>
-
 
           <div class="station" data-station-bus="103">
-
-            <div class="station-code">
-              AB 03
-            </div>
-
-            <div class="station-bus">
-              103
-            </div>
-
+            <div class="station-code">AB 03</div>
+            <div class="station-bus">103</div>
           </div>
-
 
           <div class="station" data-station-bus="104">
-
-            <div class="station-code">
-              AB 04
-            </div>
-
-            <div class="station-bus">
-              104
-            </div>
-
+            <div class="station-code">AB 04</div>
+            <div class="station-bus">104</div>
           </div>
-
 
           <div class="station" data-station-bus="105">
-
-            <div class="station-code">
-              AB 05
-            </div>
-
-            <div class="station-bus">
-              105
-            </div>
-
+            <div class="station-code">AB 05</div>
+            <div class="station-bus">105</div>
           </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- GREEN STATIONS -->
-
-      <div class="stations-panel">
-
-        <div class="station-title">
-          GREEN LINE STATIONS
-        </div>
-
-        <div class="stations-grid">
 
           <div class="station" data-station-bus="106">
-
-            <div class="station-code">
-              BA 06
-            </div>
-
-            <div class="station-bus">
-              106
-            </div>
-
+            <div class="station-code">BA 06</div>
+            <div class="station-bus">106</div>
           </div>
-
 
           <div class="station" data-station-bus="107">
-
-            <div class="station-code">
-              BA 07
-            </div>
-
-            <div class="station-bus">
-              107
-            </div>
-
+            <div class="station-code">BA 07</div>
+            <div class="station-bus">107</div>
           </div>
-
 
           <div class="station" data-station-bus="108">
-
-            <div class="station-code">
-              BA 08
-            </div>
-
-            <div class="station-bus">
-              108
-            </div>
-
+            <div class="station-code">BA 08</div>
+            <div class="station-bus">108</div>
           </div>
-
 
           <div class="station" data-station-bus="109">
-
-            <div class="station-code">
-              BA 09
-            </div>
-
-            <div class="station-bus">
-              109
-            </div>
-
+            <div class="station-code">BA 09</div>
+            <div class="station-bus">109</div>
           </div>
-
 
           <div class="station" data-station-bus="110">
-
-            <div class="station-code">
-              BA 10
-            </div>
-
-            <div class="station-bus">
-              110
-            </div>
-
+            <div class="station-code">BA 10</div>
+            <div class="station-bus">110</div>
           </div>
-
         </div>
-
       </div>
 
-
-
-      <!-- SELECTED BUS INFORMATION -->
-
-      <div id="busInfo" class="bus-info">
-
-        <div
-          class="info-close"
-          onclick="closeBusInfo()"
-        >
-          ×
-        </div>
-
-
-        <div class="info-top">
-
-          <div
-            id="infoBusNumber"
-            class="info-bus-number"
-          >
-            106
-          </div>
-
-          <div
-            id="infoDriver"
-            class="info-driver"
-          >
-            ALEKS ALEKSOV
-          </div>
-
-        </div>
-
-
-        <div class="info-bottom">
-
-          <div class="info-field">
-
-            <div class="info-label">
-              STATUS
-            </div>
-
-            <div
-              id="infoStatus"
-              class="info-value"
-            >
-              BREAK OUT
-            </div>
-
-          </div>
-
-
-          <div class="info-field">
-
-            <div class="info-label">
-              HEADWAY
-            </div>
-
-            <div
-              id="infoHeadway"
-              class="info-value"
-            >
-              0
-            </div>
-
-          </div>
-
-
-          <div class="info-field">
-
-            <div class="info-label">
-              CURRENT STATION
-            </div>
-
-            <div
-              id="infoStation"
-              class="info-value"
-            >
-              BA 06
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- ALERTS -->
-
+      <!-- ALERTS: SAME Y LEVEL AS GREEN LINE HEADER -->
       <div class="alerts">
-
-        <div class="alerts-header">
-          ALERTS: 1
-        </div>
+        <div class="alerts-header">ALERTS: 1</div>
 
         <div class="alert-row">
-
-          <div class="alert-index">
-            1
-          </div>
-
+          <div class="alert-index">1</div>
           <div class="alert-text">
             106_ALEKS ALEKSOV_START 17:35_DRT 25 MIN_ACTIVE
           </div>
+        </div>
+      </div>
 
+      <!-- BUS INFO -->
+      <div id="busInfo" class="bus-info">
+        <div class="info-close" onclick="closeBusInfo()">×</div>
+
+        <div class="info-top">
+          <div id="infoBusNumber" class="info-bus-number">106</div>
+          <div id="infoDriver" class="info-driver">ALEKS ALEKSOV</div>
         </div>
 
+        <div class="info-bottom">
+          <div class="info-field">
+            <div class="info-label">STATUS</div>
+            <div id="infoStatus" class="info-value">BREAK OUT</div>
+          </div>
+
+          <div class="info-field">
+            <div class="info-label">HEADWAY</div>
+            <div id="infoHeadway" class="info-value">0</div>
+          </div>
+
+          <div class="info-field">
+            <div class="info-label">CURRENT STATION</div>
+            <div id="infoStation" class="info-value">BA 06</div>
+          </div>
+        </div>
       </div>
 
     </div>
-
   </div>
-
 </div>
 
-
-
 <script>
-
   const buses = {
-
-    "100": {
-      driver: "AHMED AHMEDOV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "AB 01"
-    },
-
-    "102": {
-      driver: "MAMED MAMEDOV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "AB 02"
-    },
-
-    "103": {
-      driver: "AYAZ AYAZOV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "AB 03"
-    },
-
-    "104": {
-      driver: "KANAN KANANOV",
-      status: "ACCIDENT",
-      headway: "0",
-      station: "AB 04"
-    },
-
-    "105": {
-      driver: "ZAUR ZAUROV",
-      status: "BREAK OUT",
-      headway: "0",
-      station: "AB 05"
-    },
-
-    "106": {
-      driver: "ALEKS ALEKSOV",
-      status: "BREAK OUT",
-      headway: "0",
-      station: "BA 06"
-    },
-
-    "107": {
-      driver: "PAVEL PAVELOV",
-      status: "GPS OFF",
-      headway: "0",
-      station: "BA 07"
-    },
-
-    "108": {
-      driver: "NIKOLAY NIKOLOV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "BA 08"
-    },
-
-    "109": {
-      driver: "MIHAIL MIHAILOV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "BA 09"
-    },
-
-    "110": {
-      driver: "IGOR IGOROV",
-      status: "ON ROUTE",
-      headway: "15",
-      station: "BA 10"
-    }
-
+    "100": { driver: "AHMED AHMEDOV", status: "ON ROUTE", headway: "15", station: "AB 01" },
+    "102": { driver: "MAMED MAMEDOV", status: "ON ROUTE", headway: "15", station: "AB 02" },
+    "103": { driver: "AYAZ AYAZOV", status: "ON ROUTE", headway: "15", station: "AB 03" },
+    "104": { driver: "KANAN KANANOV", status: "ACCIDENT", headway: "0", station: "AB 04" },
+    "105": { driver: "ZAUR ZAUROV", status: "BREAK OUT", headway: "0", station: "AB 05" },
+    "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", headway: "0", station: "BA 06" },
+    "107": { driver: "PAVEL PAVELOV", status: "GPS OFF", headway: "0", station: "BA 07" },
+    "108": { driver: "NIKOLAY NIKOLOV", status: "ON ROUTE", headway: "15", station: "BA 08" },
+    "109": { driver: "MIHAIL MIHAILOV", status: "ON ROUTE", headway: "15", station: "BA 09" },
+    "110": { driver: "IGOR IGOROV", status: "ON ROUTE", headway: "15", station: "BA 10" }
   };
 
-
-  const searchInput =
-    document.getElementById("searchInput");
-
+  const searchInput = document.getElementById("searchInput");
 
   function clearSelection() {
+    document.querySelectorAll(".bus-row").forEach(row => {
+      row.classList.remove("selected");
+    });
 
-    document
-      .querySelectorAll(".bus-row")
-      .forEach(row => {
-        row.classList.remove("selected");
-      });
+    document.querySelectorAll(".break-row").forEach(row => {
+      row.classList.remove("selected");
+    });
 
-
-    document
-      .querySelectorAll(".break-row")
-      .forEach(row => {
-        row.classList.remove("selected");
-      });
-
-
-    document
-      .querySelectorAll(".station")
-      .forEach(station => {
-        station.classList.remove("selected");
-      });
-
+    document.querySelectorAll(".station").forEach(station => {
+      station.classList.remove("selected");
+    });
   }
 
-
   function selectBus(busNumber) {
-
     const bus = buses[busNumber];
-
-    if (!bus) {
-      return;
-    }
-
+    if (!bus) return;
 
     clearSelection();
 
+    const row = document.querySelector(`.bus-row[data-bus="${busNumber}"]`);
+    if (row) row.classList.add("selected");
 
-    const row =
-      document.querySelector(
-        `.bus-row[data-bus="${busNumber}"]`
-      );
+    const breakRow = document.querySelector(`.break-row[data-break-bus="${busNumber}"]`);
+    if (breakRow) breakRow.classList.add("selected");
 
-    if (row) {
-      row.classList.add("selected");
-    }
+    const station = document.querySelector(`.station[data-station-bus="${busNumber}"]`);
+    if (station) station.classList.add("selected");
 
+    document.getElementById("infoBusNumber").textContent = busNumber;
+    document.getElementById("infoDriver").textContent = bus.driver;
+    document.getElementById("infoStatus").textContent = bus.status;
+    document.getElementById("infoHeadway").textContent = bus.headway;
+    document.getElementById("infoStation").textContent = bus.station;
 
-    const breakRow =
-      document.querySelector(
-        `.break-row[data-break-bus="${busNumber}"]`
-      );
-
-    if (breakRow) {
-      breakRow.classList.add("selected");
-    }
-
-
-    const station =
-      document.querySelector(
-        `.station[data-station-bus="${busNumber}"]`
-      );
-
-    if (station) {
-      station.classList.add("selected");
-    }
-
-
-    document.getElementById(
-      "infoBusNumber"
-    ).textContent = busNumber;
-
-
-    document.getElementById(
-      "infoDriver"
-    ).textContent = bus.driver;
-
-
-    document.getElementById(
-      "infoStatus"
-    ).textContent = bus.status;
-
-
-    document.getElementById(
-      "infoHeadway"
-    ).textContent = bus.headway;
-
-
-    document.getElementById(
-      "infoStation"
-    ).textContent = bus.station;
-
-
-    document
-      .getElementById("busInfo")
-      .classList.add("visible");
-
+    document.getElementById("busInfo").classList.add("visible");
   }
-
 
   function closeBusInfo() {
-
-    document
-      .getElementById("busInfo")
-      .classList.remove("visible");
-
+    document.getElementById("busInfo").classList.remove("visible");
   }
 
+  searchInput.addEventListener("input", function () {
+    const value = this.value.trim().toUpperCase();
 
-  searchInput.addEventListener(
-    "input",
-    function () {
-
-      const value =
-        this.value
-          .trim()
-          .toUpperCase();
-
-
-      if (!value) {
-
-        clearSelection();
-
-        document
-          .getElementById("busInfo")
-          .classList.remove("visible");
-
-        return;
-
-      }
-
-
-      let foundBus = null;
-
-
-      Object.keys(buses).forEach(
-        busNumber => {
-
-          const bus = buses[busNumber];
-
-          if (
-            busNumber.includes(value) ||
-            bus.driver.includes(value)
-          ) {
-
-            if (!foundBus) {
-              foundBus = busNumber;
-            }
-
-          }
-
-        }
-      );
-
-
-      if (foundBus) {
-
-        selectBus(foundBus);
-
-      } else {
-
-        clearSelection();
-
-        document
-          .getElementById("busInfo")
-          .classList.remove("visible");
-
-      }
-
+    if (!value) {
+      clearSelection();
+      document.getElementById("busInfo").classList.remove("visible");
+      return;
     }
-  );
 
+    let foundBus = null;
 
-  document
-    .querySelectorAll(".bus-row")
-    .forEach(row => {
+    Object.keys(buses).forEach(busNumber => {
+      const bus = buses[busNumber];
 
-      row.addEventListener(
-        "click",
-        function () {
-
-          const busNumber =
-            this.dataset.bus;
-
-          searchInput.value =
-            busNumber;
-
-          selectBus(busNumber);
-
-        }
-      );
-
+      if (
+        busNumber.includes(value) ||
+        bus.driver.includes(value)
+      ) {
+        if (!foundBus) foundBus = busNumber;
+      }
     });
 
+    if (foundBus) {
+      selectBus(foundBus);
+    } else {
+      clearSelection();
+      document.getElementById("busInfo").classList.remove("visible");
+    }
+  });
 
-  document
-    .querySelectorAll(".station")
-    .forEach(station => {
-
-      station.addEventListener(
-        "click",
-        function () {
-
-          const busNumber =
-            this.dataset.stationBus;
-
-          searchInput.value =
-            busNumber;
-
-          selectBus(busNumber);
-
-        }
-      );
-
+  document.querySelectorAll(".bus-row").forEach(row => {
+    row.addEventListener("click", function () {
+      const busNumber = this.dataset.bus;
+      searchInput.value = busNumber;
+      selectBus(busNumber);
     });
+  });
 
+  document.querySelectorAll(".station").forEach(station => {
+    station.addEventListener("click", function () {
+      const busNumber = this.dataset.stationBus;
+      searchInput.value = busNumber;
+      selectBus(busNumber);
+    });
+  });
 
   function updateClock() {
+    const now = new Date();
 
-    const now =
-      new Date();
+    const date = now.toLocaleDateString("en-GB");
+    const time = now.toLocaleTimeString("en-GB", { hour12: false });
 
-
-    const date =
-      now.toLocaleDateString(
-        "en-GB"
-      );
-
-
-    const time =
-      now.toLocaleTimeString(
-        "en-GB",
-        {
-          hour12: false
-        }
-      );
-
-
-    document.getElementById(
-      "currentDate"
-    ).textContent = date;
-
-
-    document.getElementById(
-      "currentTime"
-    ).textContent = time;
-
+    document.getElementById("currentDate").textContent = date;
+    document.getElementById("currentTime").textContent = time;
   }
 
-
   updateClock();
-
-  setInterval(
-    updateClock,
-    1000
-  );
-
+  setInterval(updateClock, 1000);
 </script>
 
 </body>
