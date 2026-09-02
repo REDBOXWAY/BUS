@@ -404,6 +404,11 @@
     .info-value {
       color: var(--yellow);
       font-size: 28px;
+      line-height: 1.25;
+    }
+
+    #infoStatus {
+      white-space: normal;
     }
 
     @media (max-width: 1200px) {
@@ -705,7 +710,7 @@
     "103": { driver: "AYAZ AYAZOV", status: "ON ROUTE", headway: "15", station: "AB 03" },
     "104": { driver: "KANAN KANANOV", status: "ACCIDENT", headway: "0", station: "AB 04" },
     "105": { driver: "ZAUR ZAUROV", status: "BREAK OUT", headway: "0", station: "AB 05" },
-    "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", headway: "0", station: "BA 06" },
+    "106": { driver: "ALEKS ALEKSOV", status: "BREAK OUT", alert: "ALERT ACTIVE", headway: "0", station: "BA 06" },
     "107": { driver: "PAVEL PAVELOV", status: "GPS OFF", headway: "0", station: "BA 07" },
     "108": { driver: "NIKOLAY NIKOLOV", status: "ON ROUTE", headway: "15", station: "BA 08" },
     "109": { driver: "MIHAIL MIHAILOV", status: "ON ROUTE", headway: "15", station: "BA 09" },
@@ -745,7 +750,12 @@
 
     document.getElementById("infoBusNumber").textContent = busNumber;
     document.getElementById("infoDriver").textContent = bus.driver;
-    document.getElementById("infoStatus").textContent = bus.status;
+    const statusBox = document.getElementById("infoStatus");
+
+    statusBox.innerHTML = bus.alert
+      ? `${bus.status}<br>${bus.alert}`
+      : bus.status;
+
     document.getElementById("infoHeadway").textContent = bus.headway;
     document.getElementById("infoStation").textContent = bus.station;
 
